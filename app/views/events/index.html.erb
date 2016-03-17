@@ -20,6 +20,9 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td>
+          <%= image_tag('fun_ride.svg', size: "16") %>
+        </td>
         <td><%= event.name %></td>
         <td><%= event.description %></td>
         <td><%= event.event_date %></td>
