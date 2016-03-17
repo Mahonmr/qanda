@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: nike12
+  host: localhost
+
+development:
+  <<: *default
+  database: qana_development
+
+test:
+  <<: *default
+  database: qana_test
+
+production:
+  <<: *default
+  database: qana_production
+  username: qana
+  password: <%= ENV['QANA_DATABASE_PASSWORD'] %>
