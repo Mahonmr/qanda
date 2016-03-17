@@ -39,8 +39,15 @@
     </div>
   </div>
 </nav>
-
 <div class="container">
+  <% unless flash.empty? %>
+    <div class="container">
+      <div class="<%="alert alert-#{flash.keys.first}"%>">
+        <%= flash[flash.keys.first] %>
+      </div>
+    </div>
+  <% end %>
+  
   <%= yield %>
 </div>
 

@@ -19,24 +19,31 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
       if @event.save
+        flash[:success] = "Event successfully added!"
         redirect_to events_path
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
       else
+        flash[:error] = "Event was not created!"
         render :new
       end
   end
 
   def update
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        flash[:success] = "Event was successfully updated."
+        redirect_to events_path
       else
-        format.html { render :edit }
+        flash[:error] = "Event was not updated!"
+        render :edit
       end
   end
 
   def destroy
-    @event.destroy
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+    if @event.destroy
+      flash[:success] = "Event was deleted"
+    else
+      flash[:success] = "There was a problem deleting the event #{@event.name}"
+    end
+      redirect_to events_path
   end
 
   private
