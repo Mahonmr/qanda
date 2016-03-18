@@ -13,14 +13,20 @@ gem 'sass-rails', '>= 3.2'
 gem 'bootstrap-datepicker-rails'
 gem 'wicked'
 
-group :development, :test do
+group :development do
   gem 'byebug'
-  gem 'rspec'
+  gem 'web-console'
+  gem 'spring'
+  gem 'quiet_assets'
 end
 
-group :development do
-  gem 'web-console', '~> 2.0'
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'launchy'
   gem 'pry'
+end
 
-  gem 'spring'
+group :test do
+  gem 'shoulda-matchers'
+  gem 'capybara'
 end
