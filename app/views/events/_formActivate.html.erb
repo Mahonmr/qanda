@@ -11,13 +11,23 @@
     </div>
   <% end %>
 
+  <% EventType.all.each do |event_type|%>
+  <div class="radio">
+    <%= image_tag(event_type.image_url, size: "16") %>
+  <label>
+    <input type="radio" name="event_type_id" id="event_type_id" value="<%= event_type.id %>" checked>
+    <%= event_type.name %>
+  </label>
+</div>
+  <% end %>
+
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, size: "100" %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, cols: "100", rows: "10" %>
   </div>
   <div class="field">
     <%= f.label :event_date %><br>
