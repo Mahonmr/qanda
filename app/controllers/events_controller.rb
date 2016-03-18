@@ -9,43 +9,62 @@ class EventsController < ApplicationController
 
   end
 
-  def step1
-  end
-
-  def step2
-
-  end
-
-  def step3
-
-  end
-
-  def step4
-
-  end
-
-  def step4
-
-  end
 
   def new
-    @event = Event.new
+     @event = Event.new
+
+    # session[:event_params] ||= {}
+    # @event = Event.new(session[:event_params])
+    # binding.pry
+    # @event.current_step = session[:event_step]
   end
 
   def edit
   end
 
   def create
-    @event = Event.new(event_params)
-
-      if @event.save
-        flash[:success] = "Event successfully added!"
-        redirect_to events_path
-      else
-        flash[:error] = "Event was not created!"
-        render :new
-      end
+@event = Event.new
+@event.current_step = session[:event_step]
+if params[:back_button]
+  @event.previous_step
+else
+  @event.next_step
+end
+session[:event_step] = @event.current_step
+render "new"
   end
+
+
+
+  # session[:event_params].params[:event] if params[:event]
+  # @event = Event.new(session[:event_params])
+  # if @event.valid?
+  #   if params[:back_button]
+  #     @event.previous_step
+  #   elsif @event.last_step?
+  #     @event.save if @event.all_valid?
+  #   else
+  #     @event.next_step
+  #   end
+  #   session[:event_step] = @event.current_step
+  # end
+  # if @event.new_record?
+  #   render "new"
+  # else
+  #   session[:event_step] = session[:event_params] = nil
+  #   flash[:success] = "Event successfully added!"
+  #   redirect_to @event
+    # ======
+    # @event = Event.new(event_params)
+
+    #   if @event.save
+    #     flash[:success] = "Event successfully added!"
+    #     redirect_to events_path
+    #   else
+    #     flash[:error] = "Event was not created!"
+    #     render :new
+    #   end
+
 
   def update
       if @event.update(event_params)
@@ -75,3 +94,5 @@ class EventsController < ApplicationController
       params.require(:event).permit(:name, :description, :event_date, :address, :state, :zip, :latitude, :longitude)
     end
 end
+
+

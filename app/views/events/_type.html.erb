@@ -1,0 +1,11 @@
+ <h2>dlfkjdslfjdlsfj</h2>
+
+ <% EventType.all.each do |event_type|%>
+  <div class="radio">
+    <%= image_tag(event_type.image_url, size: "16") %>
+    <label>
+      <input type="radio" name="event_type_id" id="event_type_id" value="<%= event_type.id %>" checked>
+      <%= event_type.name %>
+    </label>
+  </div>
+<% end %>
