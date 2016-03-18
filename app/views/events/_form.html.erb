@@ -11,7 +11,14 @@
     </div>
   <% end %>
 
-  <%= render "#{@event.current_step}", :f => f %>
-  <p><%= f.submit "Continue ass" %></p>
-  <p><%= f.submit "shit", :name => "back_button" unless @event.first_step? %></p>
+  <% EventType.all.each do |event_type|%>
+   <div class="radio">
+     <%= image_tag(event_type.image_url, size: "16") %>
+     <label>
+       <%= f.radio_button :event_type, "#{event_type.name}", :checked => true %>
+       <%= event_type.name %>
+     </label>
+   </div>
+  <% end %>
+  <p><%= f.submit "Submit" %></p>
 <% end %>

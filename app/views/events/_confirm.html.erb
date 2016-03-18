@@ -1,3 +1,12 @@
 <div class="actions">
+  <% EventType.all.each do |event_type|%>
+   <div class="radio">
+     <%= image_tag(event_type.image_url, size: "16") %>
+     <label>
+       <%= f.radio_button :event_type, "#{event_type.name}", :checked => true %>
+       <%= event_type.name %>
+     </label>
+   </div>
+  <% end %>
   <%= f.submit %>
 </div>
