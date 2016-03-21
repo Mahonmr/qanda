@@ -17,9 +17,9 @@
   <tbody>
     <% @events.each do |event| %>
       <tr scope="row">
-        <td><%= image_tag('fun_ride.svg', size: "16") %></td>
+        <td><%= image_tag("#{get_url(event)}", size: "16") %></td>
         <td><%= event.name %></td>
-        <td><%= event.event_date %></td>
+        <td><%= event.event_date.strftime("%m/%d/%Y") unless  event.event_date.nil? %></td>
         <td><%= event.city %></td>
         <td><%= event.state %></td>
         <td><%= link_to 'Show', event %></td>

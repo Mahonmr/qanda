@@ -1,21 +1,12 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@event) do |f| %>
+  <%= render "layouts/errors", :object => @event %>
 
   <% EventType.all.each do |event_type|%>
    <div class="radio">
      <%= image_tag(event_type.image_url, size: "16") %>
      <label>
-       <%= f.radio_button :event_type, "#{event_type.name}", :checked => true %>
+       <%= f.radio_button :event_type_id, "#{event_type.id}", :checked => (event_type == EventType.first) %>
        <%= event_type.name %>
      </label>
    </div>
