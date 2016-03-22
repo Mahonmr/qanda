@@ -1,8 +1,11 @@
 class EventStepsController < ApplicationController
   include Wicked::Wizard
   require 'date'
+  @@mode = nil
+  before_action :store_mode, only: [:show]
+  before_action :create_mode?, only: [:show]
   before_action :set_event, only: [:show, :update]
-  steps :event_name, :event_address, :event_confirm
+  steps :event_type, :event_name, :event_address, :event_confirm
 
   def show
     render_wizard
@@ -16,9 +19,18 @@ class EventStepsController < ApplicationController
     render_wizard @event
   end
 
+
 private
   def event_params
     params.require(:event).permit(:event_type_id, :name, :description, :event_date, :city, :address, :state, :zip, :latitude, :longitude, :status)
+  end
+
+  def store_mode
+    @@mode = params[:mode] unless params[:mode].nil?
+  end
+
+  def create_mode?
+    @create_mode = @@mode == "create" ? true : false
   end
 
   def convert_date
@@ -33,7 +45,7 @@ private
   end
 
   def redirect_to_finish_wizard(options = nil)
-    flash[:success] = "Event was successfully created."
+    flash[:success] = create_mode? ? "Event was successfully created." : "Event was successfully Updated."
     redirect_to events_path
   end
 end

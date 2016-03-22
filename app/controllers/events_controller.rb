@@ -13,30 +13,25 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    create
   end
 
   def edit
+    update
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.new
     if @event.save(validate: false)
-      redirect_to event_steps_path(event_id: @event.id)
-      #flash[:success] = "Event successfully added!"
+      redirect_to event_steps_path(event_id: @event.id, mode: "create")
     else
       flash[:error] = "Event was not created!"
-      render :new
+      render :index
     end
   end
 
   def update
-    if @event.update(event_params)
-      flash[:success] = "Event was successfully updated."
-      redirect_to events_path
-    else
-      flash[:error] = "Event was not updated!"
-      render :edit
-    end
+    redirect_to event_steps_path(event_id: @event.id, mode: "edit")
   end
 
   def destroy
