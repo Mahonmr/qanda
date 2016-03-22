@@ -25,6 +25,6 @@
     <%= f.label :longitude %><br>
     <%= f.text_field :longitude %>
   </div>
-    <p><%= f.submit "Submit" %></p>
-    or <%= link_to "next", next_wizard_path %>
+    <p><%= f.submit "Next" %></p>
+    <p><%= link_to "Back", previous_wizard_path %></p>
 <% end %>

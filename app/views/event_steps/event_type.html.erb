@@ -1,0 +1,15 @@
+<%= form_for @event, url: wizard_path do |f| %>
+  <%= render "layouts/errors", :object => @event %>
+
+  <% EventType.all.each do |event_type|%>
+   <div class="radio">
+     <%= image_tag(event_type.image_url, size: "16") %>
+     <label>
+       <%= f.radio_button :event_type_id, "#{event_type.id}", \
+        :checked => (@event.event_type_id.nil? ? event_type == EventType.first : "#{event_type.id}" == "#{@event.event_type_id}") %>
+       <%= event_type.name %>
+     </label>
+   </div>
+  <% end %>
+  <p><%= f.submit "Next" %></p>
+<% end %>
