@@ -1,11 +1,12 @@
 <%= form_for @event, url: wizard_path do |f| %>
+  <%= render "layouts/errors", :object => @event %>
+
   <h1>Looks Good???</h1>
   <% EventType.all.each do |event_type|%>
    <div class="radio">
      <%= image_tag(event_type.image_url, size: "16") %>
      <label>
-       <%= f.radio_button :event_type, "#{event_type.name}", :checked => true %>
-       <%= event_type.name %>
+       <%= f.radio_button :event_type_id, "#{event_type.id}", :checked => ("#{event_type.id}" == "#{@event.event_type_id}")  %>
      </label>
    </div>
   <% end %>
@@ -13,19 +14,18 @@
     <%= f.label :name %><br>
     <%= f.text_field :id%>
   </div>
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name, size: "100" %>
-    </div>
-    <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_area :description, cols: "100", rows: "10" %>
-    </div>
-    <div class="field">
-      <%= f.label :event_date %><br>
-      <%= f.text_field :event_date %>
-    </div>
-
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, size: "100" %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, cols: "100", rows: "10" %>
+  </div>
+  <div class="field">
+    <%= f.label :event_date %><br>
+    <%= f.text_field :event_date, id: "datepicker", value: (@event.event_date.strftime("%m/%d/%Y") unless @event.event_date.nil?) %>
+  </div>
   <div class="field">
     <%= f.label :address %><br>
     <%= f.text_field :address %>
@@ -39,12 +39,12 @@
     <%= f.text_field :zip %>
   </div>
   <div class="field">
-    f.label :latitude %><br>
+    <%= f.label :latitude %><br>
     <%= f.text_field :latitude %>
   </div>
   <div class="field">
     <%= f.label :longitude %><br>
     <%= f.text_field :longitude %>
   </div>
-    <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit "Submit" %></p>
 <% end %>
