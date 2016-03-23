@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321040558) do
+ActiveRecord::Schema.define(version: 20160323002744) do
 
   create_table "event_types", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20160321040558) do
     t.string   "status",        limit: 255
     t.boolean  "publish"
     t.integer  "event_type_id", limit: 4
+    t.float    "lat",           limit: 24
+    t.float    "lng",           limit: 24
   end
 
 end

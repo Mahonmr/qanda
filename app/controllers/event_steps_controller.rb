@@ -22,11 +22,19 @@ class EventStepsController < ApplicationController
 
 private
   def event_params
-    params.require(:event).permit(:event_type_id, :name, :description, :event_date, :city, :address, :state, :zip, :latitude, :longitude, :status)
+    params.require(:event).permit(:event_type_id, :name, :description, :event_date, :city, :address, :state, :zip, :lat, :lng, :status)
   end
 
   def store_mode
     @@mode = params[:mode] unless params[:mode].nil?
+  end
+
+  def add_lat
+    params[:lat]
+  end
+
+  def add_lng
+    params[:lng]
   end
 
   def create_mode?
