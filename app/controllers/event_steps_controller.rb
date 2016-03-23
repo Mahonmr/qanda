@@ -5,6 +5,7 @@ class EventStepsController < ApplicationController
   before_action :store_mode, only: [:show]
   before_action :create_mode?, only: [:show]
   before_action :set_event, only: [:show, :update]
+  before_action :set_club, only: [:show, :update]
   steps :event_type, :event_name, :event_address, :event_confirm
 
   def show
@@ -48,12 +49,16 @@ private
     end
   end
 
+  def set_club
+    @club = Club.find(params[:club_id])
+  end
+
   def set_event
     @event = Event.find(params[:event_id])
   end
 
   def redirect_to_finish_wizard(options = nil)
     flash[:success] = create_mode? ? "Event was successfully created." : "Event was successfully Updated."
-    redirect_to events_path
+    redirect_to club_events_path(@club)
   end
 end

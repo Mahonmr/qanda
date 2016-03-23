@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :clubs
   resources :event_types
-  resources :events
-  scope "events/:event_id" do
-    resources :event_steps
+  resources :clubs do
+    resources :events
+      scope "events/:event_id" do
+        resources :event_steps
+      end
   end
 
   root 'clubs#index'
