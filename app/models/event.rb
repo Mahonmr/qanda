@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  belongs_to :club
   validates :name, :presence => true, :if => :active_or_name?
   validates :address, :presence => true, :if => :active_or_address?
   validate :validate_date, :if => :active_or_name?
