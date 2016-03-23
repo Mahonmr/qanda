@@ -15,6 +15,7 @@ gem 'wicked'
 gem 'geocoder'
 gem 'geocomplete_rails'
 gem "paperclip"
+gem 'devise'
 
 group :development do
   gem 'byebug'

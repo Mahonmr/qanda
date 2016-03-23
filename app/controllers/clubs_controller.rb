@@ -1,4 +1,5 @@
 class ClubsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
   before_action :set_club, only: [:show, :edit, :update, :destroy]
 
   def index

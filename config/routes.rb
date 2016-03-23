@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { sessions: "user/sessions" }
   resources :event_types
   resources :clubs do
     resources :events
