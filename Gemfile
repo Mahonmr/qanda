@@ -14,6 +14,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'wicked'
 gem 'geocoder'
 gem 'geocomplete_rails'
+gem "paperclip"
 
 group :development do
   gem 'byebug'
