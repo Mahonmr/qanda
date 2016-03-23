@@ -2,6 +2,7 @@ class EventStepsController < ApplicationController
   include Wicked::Wizard
   require 'date'
   @@mode = nil
+  before_filter :authenticate_user!
   before_action :store_mode, only: [:show]
   before_action :create_mode?, only: [:show]
   before_action :set_event, only: [:show, :update]
