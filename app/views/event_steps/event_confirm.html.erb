@@ -39,14 +39,13 @@
     <%= f.text_field :zip %>
   </div>
   <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat %>
   </div>
   <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
+    <%= f.label :lng %><br>
+    <%= f.text_field :lng %>
   </div>
-
   <p><%= f.submit @create_mode ? "Create" : "Update" %></p>
   <p><%= link_to "Back", previous_wizard_path %></p>
 <% end %>

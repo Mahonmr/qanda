@@ -1,30 +1,33 @@
-<%= form_for @event, url: wizard_path do |f| %>
+<%= form_for @event, url: wizard_path, :html => {:id => "location_form"} do |f| %>
   <%= render "layouts/errors", :object => @event %>
 
   <div class="field">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, id: "location", size: "100"  %>
   </div>
+
+  <div id="location_map" style="height:400px;"></div>
+
   <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat, id: "id_lat" %>
   </div>
+
   <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
+    <%= f.label :lat %><br>
+    <%= f.text_field :lng, id: "id_lng" %>
   </div>
-  <div class="field">
-    <%= f.label :zip %><br>
-    <%= f.text_field :zip %>
-  </div>
-  <div class="field">
-    f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
-  </div>
-    <p><%= f.submit "Next" %></p>
-    <p><%= link_to "Back", previous_wizard_path %></p>
+
+  <p><%= f.submit "Next" %></p>
+  <p><%= link_to "Back", previous_wizard_path %></p>
 <% end %>
+
+ <script type="text/javascript">
+  $(function(){
+    $("#location").geocomplete({map: "#location_map"})
+    .bind("geocode:result", function(event, result){
+      $("input#id_lat").val(result.geometry.location.lat());
+      $("input#id_lng").val(result.geometry.location.lng());
+    })
+  });
+</script>

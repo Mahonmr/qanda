@@ -12,6 +12,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 gem 'bootstrap-datepicker-rails'
 gem 'wicked'
+gem 'geocoder'
+gem 'geocomplete_rails'
 
 group :development do
   gem 'byebug'
