@@ -1,0 +1,12 @@
+<%= form_for(@club) do |f| %>
+  <%= render "layouts/errors", :object => @club %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.file_field :logo %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
