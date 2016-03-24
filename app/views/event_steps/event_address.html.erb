@@ -9,13 +9,13 @@
   <div id="location_map" style="height:400px;"></div>
 
   <div class="field">
-    <%= f.label :lat %><br>
-    <%= f.text_field :lat, id: "id_lat" %>
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude, id: "id_lat" %>
   </div>
 
   <div class="field">
-    <%= f.label :lat %><br>
-    <%= f.text_field :lng, id: "id_lng" %>
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude, id: "id_lng" %>
   </div>
 
   <p><%= f.submit "Next" %></p>
@@ -24,7 +24,7 @@
 
  <script type="text/javascript">
   $(function(){
-    $("#location").geocomplete({map: "#location_map"})
+    $("#location").geocomplete({map: "#location_map", location:"<%= @location %>"})
     .bind("geocode:result", function(event, result){
       $("input#id_lat").val(result.geometry.location.lat());
       $("input#id_lng").val(result.geometry.location.lng());

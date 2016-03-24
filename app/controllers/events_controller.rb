@@ -9,7 +9,6 @@ class EventsController < ApplicationController
   end
 
   def show
-
   end
 
 
@@ -24,6 +23,7 @@ class EventsController < ApplicationController
 
   def create
     @event = @club.events.new
+
     if @event.save(validate: false)
       redirect_to club_event_steps_path(club_id: @club, event_id: @event.id, mode: "create")
     else
@@ -55,6 +55,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:event_type_id, :name, :description, :event_date, :address, :state, :zip, :latitude, :longitude)
+      params.require(:event).permit(:event_type_id, :name, :description,\
+       :event_date, :address, :state, :zip, :latitude, :longitude)
     end
 end

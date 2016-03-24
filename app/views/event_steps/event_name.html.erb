@@ -14,5 +14,5 @@
     <%= f.text_field :event_date, id: "datepicker", value: (@event.event_date.strftime("%m/%d/%Y") unless @event.event_date.nil?) %>
   </div>
   <p><%= f.submit "Next" %></p>
-    <p><%= link_to "Back", previous_wizard_path %></p>
+  <p><%= link_to "Back", previous_wizard_path %></p>
 <% end %>

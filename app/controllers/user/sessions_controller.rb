@@ -12,7 +12,6 @@ class User::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    binding.pry
     super
     flash.delete(:notice)
   end
