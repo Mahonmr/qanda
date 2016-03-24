@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   before_action :set_club
 
   def index
-    @events = Event.all
+    @events = @club.events.all
   end
 
   def show
