@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def redirect_to_user_dashboard(user=nil)
+    user ||= current_user
+    redirect_to send(user.home_path)
+  end
+
   def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :first_name, :last_name, :email, :password) }
       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :first_name, :last_name, :email, :password, :current_password) }
