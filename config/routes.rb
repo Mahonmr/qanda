@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users
   resources :event_types
   resources :clubs do
     resources :events
@@ -7,6 +8,22 @@ Rails.application.routes.draw do
         resources :event_steps
       end
   end
+
+  resources :admins, only: [] do
+    resources :clubs, controller: :admin_clubs
+  end
+
+  resources :managers, only: [] do
+    resources :clubs, controller: :manager_clubs
+  end
+
+  resources :athletes, only: [] do
+    resources :events, controller: :athlete_events
+  end
+
+  # resources :athletes, only: [] do
+  #   resources :events, controller: :athlete_events
+  # end
 
   devise_scope :user do
     get "/login", to: "devise/sessions#new"

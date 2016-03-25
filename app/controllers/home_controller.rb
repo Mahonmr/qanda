@@ -5,13 +5,15 @@ class HomeController < ApplicationController
   end
 
   def admin
-    redirect_to clubs_path
+    redirect_to admin_clubs_path(current_user)
   end
 
   def manager
-    redirect_to club_path(current_user.club)
+    @manager = Manager.find(current_user)
+    redirect_to manager_club_path(current_user, @manager.club)
   end
 
   def athlete
+    redirect_to athlete_events_path(current_user)
   end
 end
