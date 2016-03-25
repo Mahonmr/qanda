@@ -1,0 +1,33 @@
+<h1>Events</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="1"></th>
+      <th>Name</th>
+      <th>Event date</th>
+      <th>City</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr scope="row">
+        <td><%= image_tag("#{get_url(event)}", size: "16") %></td>
+        <td><%= event.name %></td>
+        <td><%= event.event_date.strftime("%m/%d/%Y") unless  event.event_date.nil? %></td>
+        <td><%= event.city %></td>
+        <td><%= event.state %></td>
+        <td><%#= link_to 'Show', club_event_path(@club, event) %></td>
+        <td><%#= link_to 'Edit', edit_club_event_path(@club, event) %></td>
+        <td><%#= link_to 'Destroy', club_event_path(@club, event), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Event', new_club_event_path(@club) %>

@@ -1,5 +1,5 @@
 class ClubsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   before_action :set_club, only: [:show, :edit, :update, :destroy]
   # before_filter do
   #   redirect_to new_user_session_path unless current_user && current_user.admin?
@@ -46,7 +46,7 @@ class ClubsController < ApplicationController
     flash[:success] = 'Club was successfully deleted.'
     redirect_to clubs_path
     else
-      flash[:error] = "There was a problem deleting club #{@club.name}."
+      flash[:warning] = @club.errors.full_messages.to_sentence
       redirect_to clubs_path
     end
   end

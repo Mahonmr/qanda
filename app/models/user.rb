@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  #enumerize :role, in: [:athlete, :manager, :admin], default: :athlete
+  #enumerize :role, in: [:athlete, :manager, :admin], default: :athlete]
 
   def admin?
     role == 'admin'
@@ -26,6 +26,6 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name + ' ' + last_name + '::' + role
+    first_name + ' ' + last_name + '::' + role.titleize
   end
 end
