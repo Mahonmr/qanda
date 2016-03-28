@@ -17,20 +17,52 @@ gem 'geocomplete_rails'
 gem "paperclip"
 gem 'devise'
 
-group :development do
+#==========
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'web-console'
-  gem 'spring'
-  gem 'quiet_assets'
-end
-
-group :test, :development do
   gem 'rspec-rails'
   gem 'launchy'
   gem 'pry'
+  gem 'capybara'
+  gem 'warden'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'database_cleaner'
+end
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+  gem 'quiet_assets'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
 end
 
 group :test do
   gem 'shoulda-matchers'
-  gem 'capybara'
 end
+
+#==========
+
+# group :development do
+#   gem 'byebug'
+#   gem 'web-console'
+#   gem 'spring'
+#   gem 'quiet_assets'
+# end
+
+# group :test, :development do
+#   gem 'rspec-rails'
+#   gem 'pry'
+# end
+
+# group :test do
+#   gem 'shoulda-matchers'
+#   gem 'capybara'
+#   gem 'launchy'
+#   gem 'warden'
+#   gem "factory_girl_rails", "~> 4.0"
+#   gem 'database_cleaner'
+#   gem 'simplecov', require: false
+# end
