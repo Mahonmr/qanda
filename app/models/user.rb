@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  belongs_to :club
   #extend Enumerize
+  has_many :user_clubs
+  has_many :clubs, through: :user_clubs
   validates :username, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

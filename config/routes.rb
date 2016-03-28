@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users
   resources :event_types
   resources :clubs do
     resources :events
@@ -9,8 +8,10 @@ Rails.application.routes.draw do
       end
   end
 
-  resources :admins, only: [] do
-    resources :clubs, controller: :admin_clubs
+  resources :admins
+
+  resources :users do
+    resources :clubs
   end
 
   resources :managers, only: [] do
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :athletes, only: [] do
+    resources :clubs
     resources :events, controller: :athlete_events
   end
 

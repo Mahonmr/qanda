@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
 
   def admin
-    redirect_to admin_clubs_path(current_user)
+    redirect_to admins_path
   end
 
   def manager

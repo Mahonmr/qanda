@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325165757) do
+ActiveRecord::Schema.define(version: 20160328040253) do
 
   create_table "clubs", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20160325165757) do
 
   add_index "events", ["club_id"], name: "index_events_on_club_id", using: :btree
 
+  create_table "user_clubs", force: :cascade do |t|
+    t.integer "manager_id", limit: 4
+    t.integer "club_id",    limit: 4
+    t.integer "user_id",    limit: 4
+  end
+
+  add_index "user_clubs", ["club_id"], name: "index_user_clubs_on_club_id", using: :btree
+  add_index "user_clubs", ["user_id"], name: "index_user_clubs_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -70,14 +79,13 @@ ActiveRecord::Schema.define(version: 20160325165757) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
-    t.integer  "club_id",                limit: 4
     t.string   "type",                   limit: 255
   end
 
-  add_index "users", ["club_id"], name: "index_users_on_club_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "events", "clubs"
-  add_foreign_key "users", "clubs"
+  add_foreign_key "user_clubs", "clubs"
+  add_foreign_key "user_clubs", "users"
 end

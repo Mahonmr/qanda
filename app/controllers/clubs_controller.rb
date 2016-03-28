@@ -20,9 +20,10 @@ class ClubsController < ApplicationController
   end
 
   def create
+    binding.pry
     @club = Club.new(club_params)
 
-    if @club.save
+    if @club.save && @club.user_clubs.create(user: current_user, manager_id: current_user.id)
       redirect_to clubs_path
       flash[:success] = 'Club was successfully created.'
     else
